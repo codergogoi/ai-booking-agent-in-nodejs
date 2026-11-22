@@ -4,6 +4,9 @@ Booking agent for a small hair salon (NestJS + TypeScript, MongoDB, Claude). It 
 free slots, book, reschedule and cancel. Cancels need a yes from the customer before anything
 is written.
 
+## Diagram Link
+https://tierslate.com/b/BeFsrBmmpI6p?t=LLc5USlHGz0bkeY1Uozckzh5
+
 ## Run it
 
 ```bash
