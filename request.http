@@ -1,0 +1,40 @@
+@base = http://localhost:3500
+
+### Is the salon agent up?
+GET {{base}}/health
+
+### A customer asks about Sunday afternoon
+POST {{base}}/agent/conversations
+Content-Type: application/json
+
+{ "message": "Hi, can I get a haircut on Sunday afternoon?" }
+
+### Book the 3pm with Leo
+POST {{base}}/agent/conversations/conv_0001/messages
+Content-Type: application/json
+
+{ "message": "The 3pm with Leo, please. I'm Sam Lee, 555-0142." }
+
+### Move it to Saturday at 4pm
+POST {{base}}/agent/conversations/conv_0001/messages
+Content-Type: application/json
+
+{ "message": "Actually, can you move it to Saturday at 4pm with Leo?" }
+
+### Cancel it: the agent asks first
+POST {{base}}/agent/conversations/conv_0001/messages
+Content-Type: application/json
+
+{ "message": "Sorry, I can't make it this weekend after all. Please cancel it." }
+
+### Nothing is cancelled yet
+GET {{base}}/bookings/bkg_0005
+
+### The customer says yes
+POST {{base}}/agent/conversations/conv_0001/confirm
+Content-Type: application/json
+
+{ "confirm": true }
+
+### Now it is cancelled
+GET {{base}}/bookings/bkg_0005
